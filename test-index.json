@@ -1,0 +1,128 @@
+{
+    "type": "index_parallel",
+    "spec": {
+      "ioConfig": {
+        "type": "index_parallel",
+        "inputSource" : {
+          "type" : "local",
+          "baseDir" : "{{BASE_DIR}}",
+          "filter" : "*.json.gz"
+        },
+        "inputFormat": {
+          "type": "json"
+        }
+      },
+      "tuningConfig": {
+        "type": "index_parallel",
+        "partitionsSpec": {
+          "type": "dynamic"
+        },
+        "maxNumConcurrentSubTasks": 3,
+        "maxTotalRows": 100000
+      },
+      "dataSchema": {
+        "dataSource": "{{DATA_SOURCE}}",
+        "granularitySpec": {
+          "type": "uniform",
+          "segmentGranularity": "DAY",
+          "queryGranularity": "HOUR",
+          "rollup": true
+        },
+        "timestampSpec": {
+          "column": "StatusChangeTimestamp",
+          "format": "iso"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            { "name": "CarportSpaces", "type": "double" },
+            { "name": "BedroomsTotal", "type": "long" },
+            { "name": "HAR_TaxRate", "type": "long" },
+            { "name": "PhotosCount", "type": "long" },
+            { "name": "FireplacesTotal", "type": "long" },
+            { "name": "Longitude", "type": "double" },
+            { "name": "Latitude", "type": "double" },
+            { "name": "TaxAnnualAmount", "type": "double" },
+            { "name": "BathroomsTotalDecimal", "type": "double" },
+            { "name": "ListPrice", "type": "double" },
+            { "name": "CoveredSpaces", "type": "double" },
+            { "name": "HAR_ActiveOpenHouseCount", "type": "long" },
+            { "name": "BathroomsFull", "type": "long" },
+            { "name": "LotSizeAcres", "type": "double" },
+            { "name": "StoriesTotal", "type": "double" },
+            { "name": "HAR_PriceAcreList", "type": "double" },
+            { "name": "YearBuilt", "type": "long" },
+            { "name": "DaysOnMarket", "type": "long" },
+            { "name": "ClosePrice", "type": "double" },
+            { "name": "LivingArea", "type": "double" },
+            { "name": "BathroomsTotalInteger", "type": "long" },
+            { "name": "CumulativeDaysOnMarket", "type": "long" },
+            { "name": "HAR_IncomeGrossOperating", "type": "long" },
+            { "name": "BathroomsHalf", "type": "long" },
+            { "name": "LotSizeArea", "type": "double" },
+            { "name": "RoomsTotal", "type": "long" },
+            { "name": "GarageSpaces", "type": "long" },
+            { "name": "TaxYear", "type": "long" },
+            { "name": "HAR_PriceSqFtSold", "type": "double" },
+            { "name": "HAR_PriceSqFtList", "type": "double" },
+            { "name": "LotSizeSquareFeet", "type": "double" },
+            { "name": "OpenParkingSpaces", "type": "double" },
+            "PropertySubTypeTransformed",
+            "ListAgentKey",
+            "ContractStatusChangeDate",
+            "BuyerAgentFullName",
+            "ListingContractDate",
+            "Zoning",
+            "ListOfficeName",
+            "CountyOrParish",
+            "PropertyType",
+            "MlsStatus",
+            "ListingKey",
+            "StateOrProvince",
+            "ElementarySchool",
+            "ListAgentFirstName",
+            "ListOfficeKey",
+            "ListAgentFullName",
+            "StandardStatus",
+            "HAR_GeoMarketArea",
+            "BuilderName",
+            "PropertySubType",
+            "HighSchool",
+            "ListAgentLastName",
+            "SubdivisionName",
+            "CloseDate",
+            "ListAgentMlsId",
+            "HAR_MasterPlannedCommunity",
+            "ListOfficeMlsId",
+            "BuyerAgentFirstName",
+            "HAR_LegalSubdivision",
+            "BuyerAgentLastName",
+            "ListingId",
+            "NewConstructionYN",
+            "City",
+            "HighSchoolDistrict",
+            "BuyerAgentMlsId",
+            "PostalCode",
+            "BuyerOfficeName",
+            "ArchitecturalStyle",
+            "StructureType",
+            "UnparsedAddress"
+          ]
+        },
+        "metricsSpec": [
+          {
+            "type": "count",
+            "name": "count"
+          }
+        ],
+        "transformSpec": {
+          "transforms": [
+            {
+              "type": "expression",
+              "name": "PropertySubTypeTransformed",
+              "expression": "if(cast(\"PropertySubType\", 'string') == '' && cast(\"PropertyType\",'string') == 'Residential', 'Single Family Residence', \"PropertySubType\")"
+            }
+          ]
+        }
+      }
+    }
+  }
