@@ -25,7 +25,7 @@
         "granularitySpec": {
           "type": "uniform",
           "segmentGranularity": "DAY",
-          "queryGranularity": "HOUR",
+          "queryGranularity": "DAY",
           "rollup": true
         },
         "timestampSpec": {

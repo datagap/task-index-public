@@ -1,0 +1,89 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "druid",
+        "dataSource": "har-properties",
+        "interval": "2010-01-01/2025-12-01"
+      },
+      "appendToExisting": true
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "har-agent-activities",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "DAY",
+        "rollup": true,
+        "segmentGranularity": "DAY"
+      },
+      "timestampSpec": {
+        "column": "__time",
+        "format": "iso"
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "dimensionsSpec": {
+        "dimensions": [
+          { "name": "Longitude", "type": "double" },
+          { "name": "Latitude", "type": "double" },
+          { "name": "ListPrice", "type": "double" },
+          { "name": "ClosePrice", "type": "double" },
+          { "name": "HAR_PriceSqFtSold", "type": "double" },
+          { "name": "HAR_PriceSqFtList", "type": "double" },
+          "PropertySubTypeTransformed",
+          "AgentName",
+          "TransactionType",
+          "ListAgentKey",
+          "BuyerAgentFullName",
+          "ListOfficeName",
+          "PropertyType",
+          "MlsStatus",
+          "ListingKey",
+          "ListAgentFirstName",
+          "ListOfficeKey",
+          "ListAgentFullName",
+          "StandardStatus",
+          "PropertySubType",
+          "ListAgentLastName",
+          "CloseDate",
+          "ListAgentMlsId",
+          "ListOfficeMlsId",
+          "BuyerAgentFirstName",
+          "BuyerAgentLastName",
+          "ListingId",
+          "BuyerAgentMlsId",
+          "PostalCode",
+          "BuyerOfficeName",
+          "StructureType",
+          "UnparsedAddress"
+        ]
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+            "type": "expression",
+            "name": "AgentName",
+            "expression": "\"ListAgentFullName\""
+          },
+          {
+            "type": "expression",
+            "name": "TransactionType",
+            "expression": "'List'"
+          }
+        ]
+      }
+    }
+  }
+}
