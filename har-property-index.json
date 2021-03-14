@@ -10,7 +10,8 @@
         },
         "inputFormat": {
           "type": "json"
-        }
+        },
+        "appendToExisting": false
       },
       "tuningConfig": {
         "type": "index_parallel",
