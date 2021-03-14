@@ -5,7 +5,7 @@
         "type": "index_parallel",
         "inputSource" : {
           "type" : "local",
-          "baseDir" : "$BASE_DIR",
+          "baseDir" : "BASE_DIR",
           "filter" : "*.json.gz"
         },
         "inputFormat": {
@@ -21,7 +21,7 @@
         "maxTotalRows": 100000
       },
       "dataSchema": {
-        "dataSource": "$DATA_SOURCE",
+        "dataSource": "DATA_SOURCE",
         "granularitySpec": {
           "type": "uniform",
           "segmentGranularity": "DAY",
