@@ -1,0 +1,103 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+          "https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/recovery_index_data.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "recovery-weekly-by-national-metro",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "WEEK"
+      },
+      "timestampSpec": {
+        "column": "date",
+        "format": "M/d/yyyy"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "cbsa_code"
+          },
+          "cbsa_title",
+          {
+            "type": "double",
+            "name": "housing_demand_index"
+          },
+          {
+            "type": "double",
+            "name": "housing_demand_index_ww"
+          },
+          {
+            "type": "double",
+            "name": "housing_demand_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_dom_index"
+          },
+          {
+            "type": "double",
+            "name": "median_dom_index_ww"
+          },
+          {
+            "type": "double",
+            "name": "median_dom_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_index"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_index_ww"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_yy"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_index"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_index_ww"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_yy"
+          },
+          {
+            "type": "double",
+            "name": "recovery_index"
+          },
+          {
+            "type": "double",
+            "name": "recovery_index_ww"
+          },
+          "region"
+        ]
+      }
+    }
+  }
+}

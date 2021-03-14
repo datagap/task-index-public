@@ -1,0 +1,121 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+          "https://econdata.s3-us-west-2.amazonaws.com/Reports/Hotness/RDC_Inventory_Hotness_Metrics_Metro_History.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "market-hotness-monthly-by-metro",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "MONTH"
+      },
+      "timestampSpec": {
+        "column": "month_date_yyyymm",
+        "format": "yyyyMM"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "cbsa_code"
+          },
+          "cbsa_title",
+          {
+            "type": "double",
+            "name": "demand_score"
+          },
+          {
+            "type": "long",
+            "name": "hotness_rank"
+          },
+          {
+            "type": "long",
+            "name": "hotness_rank_mm"
+          },
+          {
+            "type": "long",
+            "name": "hotness_rank_yy"
+          },
+          {
+            "type": "double",
+            "name": "hotness_score"
+          },
+          {
+            "type": "double",
+            "name": "ldp_unique_viewers_per_property_mm"
+          },
+          "ldp_unique_viewers_per_property_vs_us",
+          {
+            "type": "double",
+            "name": "ldp_unique_viewers_per_property_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market_mm"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_dom_mm_day"
+          },
+          "median_dom_vs_us",
+          {
+            "type": "double",
+            "name": "median_dom_yy_day"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_mm"
+          },
+          "median_listing_price_vs_us",
+          {
+            "type": "double",
+            "name": "median_listing_price_yy"
+          },
+          {
+            "type": "long",
+            "name": "nielsen_hh_rank"
+          },
+          {
+            "type": "long",
+            "name": "quality_flag"
+          },
+          {
+            "type": "double",
+            "name": "supply_score"
+          }
+        ]
+      }
+    }
+  }
+}

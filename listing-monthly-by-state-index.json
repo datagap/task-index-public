@@ -1,0 +1,187 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+          "https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Core_Metrics_State_History.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "listing-monthly-by-state",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "MONTH"
+      },
+      "timestampSpec": {
+        "column": "month_date_yyyymm",
+        "format": "yyyyMM"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "active_listing_count"
+          },
+          {
+            "type": "double",
+            "name": "active_listing_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "active_listing_count_yy"
+          },
+          {
+            "type": "double",
+            "name": "average_listing_price"
+          },
+          {
+            "type": "double",
+            "name": "average_listing_price_mm"
+          },
+          {
+            "type": "double",
+            "name": "average_listing_price_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market_mm"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_mm"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_per_square_foot"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_per_square_foot_mm"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_per_square_foot_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_square_feet"
+          },
+          {
+            "type": "double",
+            "name": "median_square_feet_mm"
+          },
+          {
+            "type": "double",
+            "name": "median_square_feet_yy"
+          },
+          {
+            "type": "long",
+            "name": "new_listing_count"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_yy"
+          },
+          {
+            "type": "long",
+            "name": "pending_listing_count"
+          },
+          {
+            "type": "double",
+            "name": "pending_listing_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "pending_listing_count_yy"
+          },
+          {
+            "type": "double",
+            "name": "pending_ratio"
+          },
+          {
+            "type": "double",
+            "name": "pending_ratio_mm"
+          },
+          {
+            "type": "double",
+            "name": "pending_ratio_yy"
+          },
+          {
+            "type": "long",
+            "name": "price_increased_count"
+          },
+          {
+            "type": "double",
+            "name": "price_increased_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "price_increased_count_yy"
+          },
+          {
+            "type": "long",
+            "name": "price_reduced_count"
+          },
+          {
+            "type": "double",
+            "name": "price_reduced_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "price_reduced_count_yy"
+          },
+          "state",
+          "state_id",
+          {
+            "type": "long",
+            "name": "total_listing_count"
+          },
+          {
+            "type": "double",
+            "name": "total_listing_count_mm"
+          },
+          {
+            "type": "double",
+            "name": "total_listing_count_yy"
+          }
+        ]
+      }
+    }
+  }
+}
