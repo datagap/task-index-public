@@ -42,6 +42,8 @@
           { "name": "ClosePrice", "type": "double" },
           { "name": "HAR_PriceSqFtSold", "type": "double" },
           { "name": "HAR_PriceSqFtList", "type": "double" },
+          { "name": "DaysOnMarket", "type": "long" },
+          { "name": "CumulativeDaysOnMarket", "type": "long" },
           "PropertySubTypeTransformed",
           "AgentName",
           "TransactionType",
@@ -71,6 +73,11 @@
         ]
       },
       "transformSpec": {
+        "filter": {
+          "type": "selector",
+          "dimension": "BuyerOfficeName",
+          "value": "Douglas Elliman Real Estate"
+        },
         "transforms": [
           {
             "type": "expression",
