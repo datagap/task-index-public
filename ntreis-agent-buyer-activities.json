@@ -87,8 +87,8 @@
       "transformSpec": {
         "filter": {
           "type": "selector",
-          "dimension": "SellingOfficeName",
-          "value": "Douglas Elliman Real Estate"
+          "dimension": "SellingOfficeMLSID",
+          "value": "ELMN01"
         },
         "transforms": [
           {
