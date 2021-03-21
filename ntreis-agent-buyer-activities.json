@@ -37,7 +37,7 @@
       "dimensionsSpec": {
         "dimensions": [
           "AgentName",
-          "TransactionType",
+          "TransactionTypeTransformed",
           "ArchitecturalStyle",
           "CloseDate",
           {"name": "ClosePrice", "type": "double"},
@@ -98,7 +98,7 @@
           },
           {
             "type": "expression",
-            "name": "TransactionType",
+            "name": "TransactionTypeTransformed",
             "expression": "'Buyer'"
           }
         ]
