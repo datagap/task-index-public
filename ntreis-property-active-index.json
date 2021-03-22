@@ -18,7 +18,7 @@
         "partitionsSpec": {
           "type": "dynamic"
         },
-        "maxNumConcurrentSubTasks": 3,
+        "maxNumConcurrentSubTasks": 2,
         "maxTotalRows": 100000
       },
       "dataSchema": {
@@ -26,8 +26,8 @@
         "granularitySpec": {
           "type": "uniform",
           "segmentGranularity": "DAY",
-          "queryGranularity": "DAY",
-          "rollup": false
+          "queryGranularity": "MINUTE",
+          "rollup": true
         },
         "timestampSpec": {
           "column": "StatusChangeTimestamp",
@@ -405,7 +405,6 @@
           ]
         },
         "transformSpec": {
-          
           "filter": {
             "type":"or",
             "fields": [
