@@ -27,7 +27,7 @@
           "type": "uniform",
           "segmentGranularity": "DAY",
           "queryGranularity": "DAY",
-          "rollup": true
+          "rollup": false
         },
         "timestampSpec": {
           "column": "StatusChangeTimestamp",
@@ -403,6 +403,13 @@
             "Zoning",
             "ZoningCommercial"
           ]
+        },
+        "transformSpec": {
+          "filter": {
+            "type": "selector",
+            "dimension": "SellingOfficeMLSID",
+            "value": "ELMN01"
+          }
         },
         "metricsSpec": [
           {
