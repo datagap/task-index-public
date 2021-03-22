@@ -407,8 +407,8 @@
         "transformSpec": {
           "filter": {
             "type": "selector",
-            "dimension": "SellingOfficeMLSID",
-            "value": "ELMN01"
+            "dimension": "Status",
+            "value": "Sold"
           }
         },
         "metricsSpec": [
