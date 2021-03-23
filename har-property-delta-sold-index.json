@@ -4,9 +4,19 @@
       "ioConfig": {
         "type": "index_parallel",
         "inputSource" : {
-          "type" : "local",
-          "baseDir" : "BASE_DIR",
-          "filter" : "*.json.gz"
+          "type": "combining",
+          "delegates": [
+            {
+              "type": "druid",
+              "dataSource": "BASE_DATA_SOURCE",
+              "interval": "INTERVALS"
+            },
+            {
+              "type" : "local",
+              "baseDir" : "BASE_DIR",
+              "filter" : "*.json.gz"
+            }
+          ]
         },
         "inputFormat": {
           "type": "json"
@@ -16,17 +26,21 @@
       "tuningConfig": {
         "type": "index_parallel",
         "partitionsSpec": {
-          "type": "dynamic"
+          "type": "hashed",
+          "numShards": 1
         },
-        "maxNumConcurrentSubTasks": 3,
-        "maxTotalRows": 100000
+        "maxNumConcurrentSubTasks": 2,
+        "maxTotalRows": 100000,
+        "maxRowsInMemory": 25000,
+        "forceGuaranteedRollup": true
       },
       "dataSchema": {
         "dataSource": "DATA_SOURCE",
         "granularitySpec": {
           "type": "uniform",
           "segmentGranularity": "DAY",
-          "queryGranularity": "DAY",
+          "queryGranularity": "MINUTE",
+          "intervals": ["INTERVALS"],
           "rollup": true
         },
         "timestampSpec": {
@@ -80,6 +94,7 @@
             { "name": "LotSizeSquareFeet", "type": "double" },
             { "name": "OpenParkingSpaces", "type": "double" },
             { "name": "BuildingAreaTotal", "type": "double" },
+            "PropertySubTypeTransformed",
             "HAR_ContractType",
             "HAR_DevelopCommunity",
             "CoolingYN",
@@ -278,13 +293,12 @@
             "HAR_OtherMandatoryFee"
           ]
         },
-        "metricsSpec": [
-          {
-            "type": "count",
-            "name": "count"
-          }
-        ],
         "transformSpec": {
+          "filter": {
+            "type": "selector",
+            "dimension": "MlsStatus",
+            "value": "Sold"
+          },
           "transforms": [
             {
               "type": "expression",
@@ -292,7 +306,13 @@
               "expression": "if(cast(\"PropertySubType\", 'string') == '' && cast(\"PropertyType\",'string') == 'Residential', 'Single Family Residence', \"PropertySubType\")"
             }
           ]
-        }
+        },
+        "metricsSpec": [
+          {
+            "type": "count",
+            "name": "count"
+          }
+        ]
       }
     }
   }

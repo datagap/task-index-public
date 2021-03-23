@@ -20,9 +20,9 @@
       "dataSource": "TARGET",
       "granularitySpec": {
         "type": "uniform",
-        "queryGranularity": "DAY",
-        "rollup": true,
-        "segmentGranularity": "DAY"
+        "segmentGranularity": "DAY",
+        "queryGranularity": "MINUTE",
+        "rollup": true
       },
       "timestampSpec": {
         "column": "__time",
@@ -46,7 +46,7 @@
           { "name": "CumulativeDaysOnMarket", "type": "long" },
           "PropertySubTypeTransformed",
           "AgentName",
-          "TransactionType",
+          "ActivityType",
           "ListAgentKey",
           "BuyerAgentFullName",
           "ListOfficeName",
@@ -69,7 +69,8 @@
           "PostalCode",
           "BuyerOfficeName",
           "StructureType",
-          "UnparsedAddress"
+          "UnparsedAddress",
+          "HAR_GeoMarketArea"
         ]
       },
       "transformSpec": {
@@ -86,7 +87,7 @@
           },
           {
             "type": "expression",
-            "name": "TransactionType",
+            "name": "ActivityType",
             "expression": "'List'"
           }
         ]
