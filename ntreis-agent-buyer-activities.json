@@ -20,9 +20,9 @@
       "dataSource": "TARGET",
       "granularitySpec": {
         "type": "uniform",
-        "queryGranularity": "DAY",
-        "rollup": true,
-        "segmentGranularity": "DAY"
+        "segmentGranularity": "DAY",
+        "queryGranularity": "MINUTE",
+        "rollup": true
       },
       "timestampSpec": {
         "column": "__time",

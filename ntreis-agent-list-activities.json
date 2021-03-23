@@ -20,9 +20,9 @@
       "dataSource": "TARGET",
       "granularitySpec": {
         "type": "uniform",
-        "queryGranularity": "DAY",
-        "rollup": true,
-        "segmentGranularity": "DAY"
+        "segmentGranularity": "DAY",
+        "queryGranularity": "MINUTE",
+        "rollup": true
       },
       "timestampSpec": {
         "column": "__time",
@@ -37,7 +37,7 @@
       "dimensionsSpec": {
         "dimensions": [
           "AgentName",
-          "TransactionTypeTransformed",
+          "ActivityType",
           "ArchitecturalStyle",
           "CloseDate",
           {"name": "ClosePrice", "type": "double"},
@@ -98,7 +98,7 @@
           },
           {
             "type": "expression",
-            "name": "TransactionTypeTransformed",
+            "name": "ActivityType",
             "expression": "'List'"
           }
         ]
