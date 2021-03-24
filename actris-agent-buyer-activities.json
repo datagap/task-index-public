@@ -1,0 +1,97 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "druid",
+        "dataSource": "SOURCE",
+        "interval": "2010-01-01/2025-12-01"
+      },
+      "appendToExisting": true
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "TARGET",
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": "MINUTE",
+        "rollup": true
+      },
+      "timestampSpec": {
+        "column": "__time",
+        "format": "iso"
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "dimensionsSpec": {
+        "dimensions": [
+          { "name": "Longitude", "type": "double" },
+          { "name": "Latitude", "type": "double" },
+          { "name": "ListPrice", "type": "double" },
+          { "name": "ClosePrice", "type": "double" },
+          { "name": "HAR_PriceSqFtSold", "type": "double" },
+          { "name": "HAR_PriceSqFtList", "type": "double" },
+          { "name": "DaysOnMarket", "type": "long" },
+          { "name": "CumulativeDaysOnMarket", "type": "long" },
+          "PropertySubTypeTransformed",
+          "AgentName",
+          "ActivityType",
+          "ListAgentKey",
+          "BuyerAgentFullName",
+          "ListOfficeName",
+          "PropertyType",
+          "MlsStatus",
+          "ListingKey",
+          "ListAgentFirstName",
+          "ListOfficeKey",
+          "ListAgentFullName",
+          "StandardStatus",
+          "PropertySubType",
+          "ListAgentLastName",
+          "CloseDate",
+          "ListAgentMlsId",
+          "ListOfficeMlsId",
+          "BuyerAgentFirstName",
+          "BuyerAgentLastName",
+          "ListingId",
+          "BuyerAgentMlsId",
+          "PostalCode",
+          "BuyerOfficeName",
+          "StructureType",
+          "UnparsedAddress",
+          "HAR_GeoMarketArea"
+        ]
+      },
+      "transformSpec": {
+        "filter": {
+          "type": "selector",
+          "dimension": "BuyerOfficeName",
+          "value": "Douglas Elliman Real Estate"
+        },
+        "transforms": [
+          {
+            "type": "expression",
+            "name": "AgentName",
+            "expression": "\"BuyerAgentFirstName\""
+          },
+          {
+            "type": "expression",
+            "name": "ActivityType",
+            "expression": "'Buyer'"
+          }
+        ]
+      }
+    }
+  }
+}
