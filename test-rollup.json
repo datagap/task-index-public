@@ -1,0 +1,53 @@
+{
+    "type": "index_parallel",
+    "spec": {
+        "ioConfig": {
+            "type": "index_parallel",
+            "inputSource": {
+                "type": "local",
+                "baseDir": "/var/shared-data/har-2020",
+                "filter": "*.json.gz"
+            },
+            "inputFormat": {
+                "type": "json"
+            },
+            "appendToExisting": false
+        },
+        "tuningConfig": {
+            "type": "index_parallel",
+            "partitionsSpec": {
+                "type": "dynamic"
+            },
+            "maxNumConcurrentSubTasks": 2,
+            "maxTotalRows": 100000
+        },
+        "dataSchema": {
+            "dataSource": "shared@har-properties-rollup",
+            "granularitySpec": {
+                "type": "uniform",
+                "segmentGranularity": "DAY",
+                "queryGranularity": "DAY",
+                "rollup": true
+            },
+            "timestampSpec": {
+                "column": "StatusChangeTimestamp",
+                "format": "iso"
+            },
+            "dimensionsSpec": {
+                "dimensions": [
+                    "StandardStatus"
+                ]
+            },
+            "metricsSpec": [
+                {
+                    "type": "count",
+                    "name": "TotalCount"
+                },
+                { "type" : "doubleSum", "name" : "SumClosePrice", "fieldName" : "ClosePrice" },
+                { "type" : "doubleSum", "name" : "SumListPrice", "fieldName" : "ListPrice" },
+                { "type" : "doubleSum", "name" : "SumClosePSF", "fieldName" : "HAR_PriceSqFtSold" },
+                { "type" : "doubleSum", "name" : "SumDOM", "fieldName" : "DaysOnMarket" }
+            ]
+        }
+    }
+}

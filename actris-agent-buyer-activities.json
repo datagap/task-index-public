@@ -40,11 +40,10 @@
           { "name": "Latitude", "type": "double" },
           { "name": "ListPrice", "type": "double" },
           { "name": "ClosePrice", "type": "double" },
-          { "name": "HAR_PriceSqFtSold", "type": "double" },
-          { "name": "HAR_PriceSqFtList", "type": "double" },
+          { "name": "ACTRIS_RATIO_CurrentPrice_By_LivingArea", "type": "double" },
+          { "name": "ACTRIS_RATIO_ListPrice_By_LivingArea", "type": "double" },
           { "name": "DaysOnMarket", "type": "long" },
           { "name": "CumulativeDaysOnMarket", "type": "long" },
-          "PropertySubTypeTransformed",
           "AgentName",
           "ActivityType",
           "ListAgentKey",
@@ -68,16 +67,14 @@
           "BuyerAgentMlsId",
           "PostalCode",
           "BuyerOfficeName",
-          "StructureType",
-          "UnparsedAddress",
-          "HAR_GeoMarketArea"
+          "UnparsedAddress"
         ]
       },
       "transformSpec": {
         "filter": {
           "type": "selector",
-          "dimension": "BuyerOfficeName",
-          "value": "Douglas Elliman Real Estate"
+          "dimension": "BuyerOfficeMlsId",
+          "value": "700901"
         },
         "transforms": [
           {
