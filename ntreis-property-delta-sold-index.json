@@ -415,7 +415,8 @@
             {"name": "YearBuilt", "type": "long"},
             "YearBuiltDetails",
             "Zoning",
-            "ZoningCommercial"
+            "ZoningCommercial",
+            {"name": "ListPricePerSqft", "type": "double"}
           ]
         },
         "transformSpec": {
@@ -423,7 +424,14 @@
             "type": "selector",
             "dimension": "Status",
             "value": "Sold"
-          }
+          },
+          "transforms": [
+            {
+              "type": "expression",
+              "name": "ListPricePerSqft",
+              "expression": "ListPrice / SqFtTotal"
+            }
+          ]
         },
         "metricsSpec": [
           {

@@ -22,7 +22,7 @@
             "maxTotalRows": 100000
         },
         "dataSchema": {
-            "dataSource": "shared@har-properties-rollup",
+            "dataSource": "shared@har-market-summary",
             "granularitySpec": {
                 "type": "uniform",
                 "segmentGranularity": "DAY",

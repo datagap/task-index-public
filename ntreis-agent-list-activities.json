@@ -81,7 +81,8 @@
           "SubdividedYN",
           "SubdivisionName",
           "TransactionType",
-          {"name": "YearBuilt", "type": "long"}
+          {"name": "YearBuilt", "type": "long"},
+          {"name": "ListPricePerSqft", "type": "double"}
         ]
       },
       "transformSpec": {
@@ -100,6 +101,11 @@
             "type": "expression",
             "name": "ActivityType",
             "expression": "'List'"
+          },
+          {
+            "type": "expression",
+            "name": "ListPricePerSqft",
+            "expression": "ListPrice / SqFtTotal"
           }
         ]
       }
