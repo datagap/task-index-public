@@ -429,7 +429,7 @@
             {
               "type": "expression",
               "name": "ListPricePerSqft",
-              "expression": "ListPrice / SqFtTotal"
+              "expression": "round(cast(\"ListPrice\",'DOUBLE')/cast(\"SqFtTotal\",'LONG'), 2)"
             }
           ]
         },
