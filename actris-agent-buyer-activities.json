@@ -67,7 +67,8 @@
           "BuyerAgentMlsId",
           "PostalCode",
           "BuyerOfficeName",
-          "UnparsedAddress"
+          "UnparsedAddress",
+          "BuyerOfficeMlsId"
         ]
       },
       "transformSpec": {
