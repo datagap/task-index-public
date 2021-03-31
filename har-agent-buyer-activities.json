@@ -8,7 +8,7 @@
         "dataSource": "SOURCE",
         "interval": "2010-01-01/2025-12-01"
       },
-      "appendToExisting": false
+      "appendToExisting": true
     },
     "tuningConfig": {
       "type": "index_parallel",
@@ -21,8 +21,8 @@
       "granularitySpec": {
         "type": "uniform",
         "segmentGranularity": "DAY",
-        "queryGranularity": "MINUTE",
-        "rollup": true
+        "queryGranularity": "DAY",
+        "rollup": false
       },
       "timestampSpec": {
         "column": "__time",
