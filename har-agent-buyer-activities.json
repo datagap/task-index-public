@@ -21,7 +21,7 @@
       "granularitySpec": {
         "type": "uniform",
         "segmentGranularity": "DAY",
-        "queryGranularity": "DAY",
+        "queryGranularity": "MINUTE",
         "rollup": false
       },
       "timestampSpec": {
@@ -89,6 +89,11 @@
             "type": "expression",
             "name": "ActivityType",
             "expression": "'Buyer'"
+          },
+          {
+            "type": "expression",
+            "name": "__time",
+            "expression": "timestamp_shift(\"__time\", 'PT1M',2)"
           }
         ]
       }

@@ -4,9 +4,12 @@
     "ioConfig": {
       "type": "index_parallel",
       "inputSource": {
-        "type": "druid",
-        "dataSource": "shared@har-properties-sold",
-        "interval": "2010-01-01/2025-12-01"
+        "type": "local",
+        "baseDir": "/var/shared-data/har-2020",
+        "filter": "*.json.gz"
+      },
+      "inputFormat": {
+          "type": "json"
       },
       "appendToExisting": false
     },
@@ -25,7 +28,7 @@
         "rollup": true
       },
       "timestampSpec": {
-        "column": "__time",
+        "column": "StatusChangeTimestamp",
         "format": "iso"
       },
       "metricsSpec": [
@@ -35,6 +38,7 @@
         },
         { "type" : "doubleSum", "name" : "SumClosePrice", "fieldName" : "ClosePrice" },
         { "type" : "doubleSum", "name" : "SumListPrice", "fieldName" : "ListPrice" },
+        { "type" : "doubleMean", "name" : "MeanClosePSF", "fieldName" : "HAR_PriceSqFtSold"},
         { "type" : "doubleMean", "name" : "MeanDOM", "fieldName" : "DaysOnMarket" }
       ],
       "dimensionsSpec": {
@@ -47,9 +51,11 @@
       },
       "transformSpec": {
         "filter": {
-          "type": "selector",
-          "dimension": "ListOfficeMlsId",
-          "value": "DETX01"
+          "type":"and",
+          "fields": [
+            { "type": "selector", "dimension": "ListOfficeMlsId", "value": "DETX01" },
+            { "type": "selector", "dimension": "PropertyType", "value": "Residential" }
+          ]
         },
         "transforms": [
           {

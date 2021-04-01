@@ -26,7 +26,6 @@
           "type": "hashed",
           "numShards": 1
         },
-        "maxNumConcurrentSubTasks": 2,
         "maxTotalRows": 100000,
         "maxRowsInMemory": 25000,
         "forceGuaranteedRollup": true
