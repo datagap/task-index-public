@@ -1,0 +1,79 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "druid",
+        "dataSource": "shared@har-properties-sold",
+        "interval": "2010-01-01/2025-12-01"
+      },
+      "appendToExisting": false
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "private@detx-har-agent-summary",
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": "DAY",
+        "rollup": true
+      },
+      "timestampSpec": {
+        "column": "__time",
+        "format": "iso"
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "TotalSales"
+        },
+        { "type" : "doubleSum", "name" : "SumClosePrice", "fieldName" : "ClosePrice" },
+        { "type" : "doubleSum", "name" : "SumListPrice", "fieldName" : "ListPrice" },
+        { "type" : "doubleMean", "name" : "MeanDOM", "fieldName" : "DaysOnMarket" }
+      ],
+      "dimensionsSpec": {
+        "dimensions": [
+          "AgentName",
+          "AgentMlsId",
+          "OfficeName",
+          "OfficeMlsId"
+        ]
+      },
+      "transformSpec": {
+        "filter": {
+          "type": "selector",
+          "dimension": "ListOfficeMlsId",
+          "value": "DETX01"
+        },
+        "transforms": [
+          {
+            "type": "expression",
+            "name": "AgentName",
+            "expression": "\"ListAgentFullName\""
+          },
+          {
+            "type": "expression",
+            "name": "OfficeName",
+            "expression": "\"ListOfficeName\""
+          },
+          {
+            "type": "expression",
+            "name": "OfficeMlsId",
+            "expression": "\"ListOfficeMlsId\""
+          },
+          {
+            "type": "expression",
+            "name": "AgentMlsId",
+            "expression": "\"ListAgentMlsId\""
+          }
+        ]
+      }
+    }
+  }
+}
