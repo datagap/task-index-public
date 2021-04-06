@@ -24,39 +24,32 @@
       "granularitySpec": {
         "type": "uniform",
         "segmentGranularity": "DAY",
-        "queryGranularity": "MINUTE",
-        "intervals": ["2010-01-01/2021-01-01"],
-        "rollup": true
+        "queryGranularity": "NONE",
+        "rollup": false
       },
       "timestampSpec": {
         "column": "StatusChangeTimestamp",
         "format": "iso"
       },
-      "metricsSpec": [
-        {
-          "type": "count",
-          "name": "TransactionCount"
-        },
-        { "type" : "doubleSum", "name" : "SumClosePrice", "fieldName" : "ClosePrice" },
-        { "type" : "doubleSum", "name" : "SumListPrice", "fieldName" : "ListPrice" }
-      ],
+      "metricsSpec": [],
       "dimensionsSpec": {
         "dimensions": [
+          "ListingId",
+          "ListingKey",
           "AgentName",
           "AgentMlsId",
           "OfficeName",
           "OfficeMlsId",
           "StandardStatus",
           "PropertyType",
-          "ActivityType"
+          "ActivityType",
+          { "name": "Longitude", "type": "double" },
+          { "name": "Latitude", "type": "double" },
+          { "name": "ListPrice", "type": "double" },
+          { "name": "ClosePrice", "type": "double" }
         ]
       },
       "transformSpec": {
-        "filter": {
-          "type": "selector",
-          "dimension": "BuyerOfficeName",
-          "value": "Douglas Elliman Real Estate"
-        },
         "transforms": [
           {
             "type": "expression",
@@ -71,7 +64,7 @@
           {
             "type": "expression",
             "name": "OfficeMlsId",
-            "expression": "'DETX01'"
+            "expression": "'TBD'"
           },
           {
             "type": "expression",

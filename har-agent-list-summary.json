@@ -4,9 +4,12 @@
     "ioConfig": {
       "type": "index_parallel",
       "inputSource": {
-        "type": "druid",
-        "dataSource": "shared@har-properties-sold",
-        "interval": "2010-01-01/2025-12-01"
+        "type": "local",
+        "baseDir": "/var/shared-data/har-2020",
+        "filter": "*.json.gz"
+      },
+      "inputFormat": {
+        "type": "json"
       },
       "appendToExisting": false
     },
@@ -25,15 +28,10 @@
         "rollup": false
       },
       "timestampSpec": {
-        "column": "__time",
+        "column": "StatusChangeTimestamp",
         "format": "iso"
       },
-      "metricsSpec": [
-        {
-          "type": "count",
-          "name": "TransactionCount"
-        }
-      ],
+      "metricsSpec": [],
       "dimensionsSpec": {
         "dimensions": [
           "ListingId",
@@ -45,16 +43,13 @@
           "StandardStatus",
           "PropertyType",
           "ActivityType",
-          "ClosePrice",
-          "ListPrice"
+          { "name": "Longitude", "type": "double" },
+          { "name": "Latitude", "type": "double" },
+          { "name": "ListPrice", "type": "double" },
+          { "name": "ClosePrice", "type": "double" }
         ]
       },
       "transformSpec": {
-        "filter": {
-          "type": "selector",
-          "dimension": "ListOfficeMlsId",
-          "value": "DETX01"
-        },
         "transforms": [
           {
             "type": "expression",
