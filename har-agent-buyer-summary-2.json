@@ -9,9 +9,9 @@
         "filter": "*.json.gz"
       },
       "inputFormat": {
-          "type": "json"
+        "type": "json"
       },
-      "appendToExisting": false
+      "appendToExisting": true
     },
     "tuningConfig": {
       "type": "index_parallel",
@@ -25,6 +25,7 @@
         "type": "uniform",
         "segmentGranularity": "DAY",
         "queryGranularity": "MINUTE",
+        "intervals": ["2010-01-01/2021-01-01"],
         "rollup": true
       },
       "timestampSpec": {
@@ -41,8 +42,6 @@
       ],
       "dimensionsSpec": {
         "dimensions": [
-          "ListingId",
-          "ListingKey",
           "AgentName",
           "AgentMlsId",
           "OfficeName",
@@ -55,34 +54,39 @@
       "transformSpec": {
         "filter": {
           "type": "selector",
-          "dimension": "ListOfficeMlsId",
-          "value": "DETX01"
+          "dimension": "BuyerOfficeName",
+          "value": "Douglas Elliman Real Estate"
         },
         "transforms": [
           {
             "type": "expression",
             "name": "AgentName",
-            "expression": "\"ListAgentFullName\""
+            "expression": "\"BuyerAgentFirstName\""
           },
           {
             "type": "expression",
             "name": "OfficeName",
-            "expression": "\"ListOfficeName\""
+            "expression": "\"BuyerOfficeName\""
           },
           {
             "type": "expression",
             "name": "OfficeMlsId",
-            "expression": "\"ListOfficeMlsId\""
+            "expression": "'DETX01'"
           },
           {
             "type": "expression",
             "name": "AgentMlsId",
-            "expression": "\"ListAgentMlsId\""
+            "expression": "\"BuyerAgentMlsId\""
+          },
+          {
+            "type": "expression",
+            "name": "StatusChangeTimestamp",
+            "expression": "timestamp_shift(\"StatusChangeTimestamp\",'PT1M',2)"
           },
           {
             "type": "expression",
             "name": "ActivityType",
-            "expression": "'List'"
+            "expression": "'Buyer'"
           }
         ]
       }

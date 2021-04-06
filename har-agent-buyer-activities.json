@@ -93,7 +93,7 @@
           {
             "type": "expression",
             "name": "__time",
-            "expression": "timestamp_shift(\"__time\", 'PT1M',2)"
+            "expression": "timestamp_shift(\"__time\",'PT1M',2)"
           }
         ]
       }
