@@ -64,7 +64,7 @@
           {
             "type": "expression",
             "name": "OfficeMlsId",
-            "expression": "'TBD'"
+            "expression": "''"
           },
           {
             "type": "expression",
