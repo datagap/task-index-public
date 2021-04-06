@@ -4,12 +4,9 @@
     "ioConfig": {
       "type": "index_parallel",
       "inputSource": {
-        "type": "local",
-        "baseDir": "/var/shared-data/har-2020",
-        "filter": "*.json.gz"
-      },
-      "inputFormat": {
-          "type": "json"
+        "type": "druid",
+        "dataSource": "shared@har-properties-sold",
+        "interval": "2010-01-01/2025-12-01"
       },
       "appendToExisting": false
     },
@@ -24,20 +21,18 @@
       "granularitySpec": {
         "type": "uniform",
         "segmentGranularity": "DAY",
-        "queryGranularity": "MINUTE",
-        "rollup": true
+        "queryGranularity": "NONE",
+        "rollup": false
       },
       "timestampSpec": {
-        "column": "StatusChangeTimestamp",
+        "column": "__time",
         "format": "iso"
       },
       "metricsSpec": [
         {
           "type": "count",
           "name": "TransactionCount"
-        },
-        { "type" : "doubleSum", "name" : "SumClosePrice", "fieldName" : "ClosePrice" },
-        { "type" : "doubleSum", "name" : "SumListPrice", "fieldName" : "ListPrice" }
+        }
       ],
       "dimensionsSpec": {
         "dimensions": [
@@ -49,7 +44,9 @@
           "OfficeMlsId",
           "StandardStatus",
           "PropertyType",
-          "ActivityType"
+          "ActivityType",
+          "ClosePrice",
+          "ListPrice"
         ]
       },
       "transformSpec": {
