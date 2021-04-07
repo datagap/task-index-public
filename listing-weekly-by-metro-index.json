@@ -34,7 +34,6 @@
       },
       "dimensionsSpec": {
         "dimensions": [
-          "active_listing_count_yy",
           {
             "type": "long",
             "name": "cbsa_code"
@@ -48,12 +47,73 @@
             "type": "long",
             "name": "median_days_on_market_by_day_yy"
           },
-          "median_days_on_market_yy",
-          "median_listing_price_yy",
-          "new_listing_count_yy",
-          "new_listing_share_yy",
-          "price_reduced_count_yy",
-          "price_reduced_share_yy"
+          {
+            "type": "double",
+            "name": "active_listing_count_yy"
+          },
+          {
+            "type": "double",
+            "name": "price_reduced_share_yy"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_share_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_days_on_market_yy"
+          },
+          {
+            "type": "double",
+            "name": "median_listing_price_yy"
+          },
+          {
+            "type": "double",
+            "name": "new_listing_count_yy"
+          },
+          {
+            "type": "double",
+            "name": "price_reduced_count_yy"
+          }
+        ]
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+            "type": "expression",
+            "name": "active_listing_count_yy",
+            "expression": "cast(rtrim(\"active_listing_count_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "price_reduced_share_yy",
+            "expression": "cast(rtrim(\"price_reduced_share_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "new_listing_share_yy",
+            "expression": "cast(rtrim(\"new_listing_share_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "median_days_on_market_yy",
+            "expression": "cast(rtrim(\"median_days_on_market_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "median_listing_price_yy",
+            "expression": "cast(rtrim(\"median_listing_price_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "new_listing_count_yy",
+            "expression": "cast(rtrim(\"new_listing_count_yy\", '%'), 'DOUBLE')"
+          },
+          {
+            "type": "expression",
+            "name": "price_reduced_count_yy",
+            "expression": "cast(rtrim(\"price_reduced_count_yy\", '%'), 'DOUBLE')"
+          }
         ]
       }
     }
