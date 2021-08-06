@@ -1,0 +1,61 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource" : {
+        "type" : "local",
+        "baseDir" : "BASE_DIR",
+        "filter" : "*.json.gz"
+      },
+      "inputFormat": {
+        "type": "json"
+      },
+      "appendToExisting": false
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      },
+      "maxNumConcurrentSubTasks": 2,
+      "maxTotalRows": 100000
+    },
+    "dataSchema": {
+      "dataSource": "DATA_SOURCE",
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": "MINUTE",
+        "rollup": true
+      },
+      "timestampSpec": {
+        "column": "StatusChangeTimestamp",
+        "format": "iso"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "ListOfficeName",
+          "ListingId",
+          "MlsStatus",
+          "ModificationTimestamp",
+          "StandardStatus",
+          "StatusChangeTimestamp"        
+        ]
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "transformSpec": {
+        "filter": {
+          "type": "selector",
+          "dimension": "MlsStatus",
+          "value": "Sold"
+        }
+      }
+    }
+  }
+}
