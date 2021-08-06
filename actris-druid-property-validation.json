@@ -4,9 +4,19 @@
     "ioConfig": {
       "type": "index_parallel",
       "inputSource" : {
-        "type" : "local",
-        "baseDir" : "BASE_DIR",
-        "filter" : "*.json.gz"
+        "type": "combining",
+        "delegates": [
+          {
+            "type": "druid",
+            "dataSource": "BASE_DATA_SOURCE",
+            "interval": "INTERVALS"
+          },
+          {
+            "type" : "local",
+            "baseDir" : "BASE_DIR",
+            "filter" : "*.json.gz"
+          }
+        ]
       },
       "inputFormat": {
         "type": "json"
