@@ -49,6 +49,7 @@
           "ListingId",
           "MlsStatus",
           "ModificationTimestamp",
+          "OriginatingSystemName",
           "StandardStatus",
           "StatusChangeTimestamp"        
         ]
@@ -60,6 +61,11 @@
         }
       ],
       "transformSpec": {
+        "transforms": {
+          "type": "expression",
+          "name": "SystemSource",
+          "expression": ""
+        },
         "filter": {
           "type": "selector",
           "dimension": "StandardStatus",

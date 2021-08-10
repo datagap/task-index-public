@@ -60,10 +60,15 @@
         }
       ],
       "transformSpec": {
+        "transforms": {
+          "type": "expression",
+          "name": "SystemSource",
+          "expression": ""
+        },
         "filter": {
           "type": "selector",
-          "dimension": "StandardStatus",
-          "value": "Closed"
+          "dimension": "MlsStatus",
+          "value": "Sold"
         }
       }
     }
