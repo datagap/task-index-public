@@ -49,6 +49,7 @@
           "ListingId",
           "MlsStatus",
           "ModificationTimestamp",
+          "SystemSource",
           "OriginatingSystemName",
           "StandardStatus",
           "StatusChangeTimestamp"        
