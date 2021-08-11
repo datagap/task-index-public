@@ -60,11 +60,13 @@
         }
       ],
       "transformSpec": {
-        "transforms": {
+        "transforms": [
+          {
           "type": "expression",
           "name": "SystemSource",
           "expression": ""
-        },
+          }
+        ],
         "filter": {
           "type": "selector",
           "dimension": "MlsStatus",
