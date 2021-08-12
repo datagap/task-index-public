@@ -46,13 +46,9 @@
       "dimensionsSpec": {
         "dimensions": [
           "ListOfficeName",
-          "ListingId",
-          "MlsStatus",
-          "ModificationTimestamp",
           "SystemSource",
           "OriginatingSystemName",
-          "StandardStatus",
-          "StatusChangeTimestamp"        
+          "MLS"    
         ]
       },
       "metricsSpec": [
@@ -67,6 +63,11 @@
           "type": "expression",
           "name": "SystemSource",
           "expression": ""
+          },
+          {
+            "type": "expression",
+            "name": "OriginatingSystemName",
+            "expression": "(\"MLS\")"
           }
         ],
         "filter": {
