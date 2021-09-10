@@ -1,0 +1,81 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+            "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Houston/20200615_Houston.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "DATA_SOURCE",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "WEEK"
+      },
+      "timestampSpec": {
+        "column": "pdate",
+        "format": "M/d/yyyy"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+            "state",
+            "county",
+            "permno",
+            "ptype",
+            "pdate",
+            "pdescription",
+            {"name": "jvalue", "type": "double"},
+            {"name": "jsqfeet", "type": "double"},
+            "jaddr",
+            "jcity",
+            "jstate",
+            "jzip",
+            "jsubdiv",
+            "jlotno",
+            "aname",
+            "aaddr",
+            "acity",
+            "astate",
+            "azip",
+            "aphone",
+            "atype",
+            "aurl",
+            "afax",
+            "aprimarycontact",
+            "aemail",
+            "bldcode",
+            "units",
+            "bldgs",
+            "ctype",
+            "legal",
+            "contractor",
+            "caddress",
+            "ccity",
+            "cstate",
+            "czip",
+            "cphone",
+            "curl",
+            "cfax",
+            "cprimarycontact",
+            "cemail"
+        ]
+      }
+    }
+  }
+}
