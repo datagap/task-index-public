@@ -54,8 +54,7 @@
       "inputFormat": {
         "type": "csv",
         "findColumnsFromHeader": true
-      },
-      "appendToExisting": false
+      }
     },
     "tuningConfig": {
       "type": "index_parallel",
