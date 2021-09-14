@@ -1,0 +1,133 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201005_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201012_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201019_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201026_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201102_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201109_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201116_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201123_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201130_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201207_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201214_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201221_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20201228_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210104_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210111_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210118_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210125_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210201_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210208_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210215_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210222_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210301_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210308_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210315_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210322_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210329_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210405_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210412_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210419_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210426_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210503_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210510_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210517_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210524_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210531_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210607_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210614_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210621_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210628_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210705_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210712_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210719_Austin.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Austin/20210726_Austin.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      },
+      "appendToExisting": false
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "shared@permit-data",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "WEEK"
+      },
+      "timestampSpec": {
+        "column": "pdate",
+        "format": "M/d/yyyy"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+            "state",
+            "county",
+            "permno",
+            "ptype",
+            "pdate",
+            "pdescription",
+            {"name": "jvalue", "type": "double"},
+            {"name": "jsqfeet", "type": "double"},
+            "jaddr",
+            "jcity",
+            "jstate",
+            "jzip",
+            "jsubdiv",
+            "jlotno",
+            "aname",
+            "aaddr",
+            "acity",
+            "astate",
+            "azip",
+            "aphone",
+            "atype",
+            "aurl",
+            "afax",
+            "aprimarycontact",
+            "aemail",
+            "bldcode",
+            "units",
+            "bldgs",
+            "ctype",
+            "legal",
+            "contractor",
+            "caddress",
+            "ccity",
+            "cstate",
+            "czip",
+            "cphone",
+            "curl",
+            "cfax",
+            "cprimarycontact",
+            "cemail"
+        ]
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+          "type": "expression",
+          "name": "Market",
+          "expression": ""
+          }
+        ]
+      }      
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "http",
+        "uris": [
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201005Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201012Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201019Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201026Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201102Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201109Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201116Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201123Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201130Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201207Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201214Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201221Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20201228Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210104Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210111Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210118Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210125Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210201Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210208Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210215Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210222Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210301Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210308Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210315Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210322Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210329Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210405Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210412Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210419Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210426Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210503Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210510Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210517Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210524Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210531Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210607Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210614Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210621Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210628Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210705Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210712Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210719Dallas%20Fort%20Worth.csv",
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Dallas/20210726Dallas%20Fort%20Worth.csv"
+        ]
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      },
+      "appendToExisting": false
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "shared@permit-data",
+      "granularitySpec": {
+        "type": "uniform",
+        "queryGranularity": "NONE",
+        "rollup": false,
+        "segmentGranularity": "WEEK"
+      },
+      "timestampSpec": {
+        "column": "pdate",
+        "format": "M/d/yyyy"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+            "state",
+            "county",
+            "permno",
+            "ptype",
+            "pdate",
+            "pdescription",
+            {"name": "jvalue", "type": "double"},
+            {"name": "jsqfeet", "type": "double"},
+            "jaddr",
+            "jcity",
+            "jstate",
+            "jzip",
+            "jsubdiv",
+            "jlotno",
+            "aname",
+            "aaddr",
+            "acity",
+            "astate",
+            "azip",
+            "aphone",
+            "atype",
+            "aurl",
+            "afax",
+            "aprimarycontact",
+            "aemail",
+            "bldcode",
+            "units",
+            "bldgs",
+            "ctype",
+            "legal",
+            "contractor",
+            "caddress",
+            "ccity",
+            "cstate",
+            "czip",
+            "cphone",
+            "curl",
+            "cfax",
+            "cprimarycontact",
+            "cemail"
+        ]
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+          "type": "expression",
+          "name": "Market",
+          "expression": ""
+          }
+        ]
+      }      
+    }
+  }
+}

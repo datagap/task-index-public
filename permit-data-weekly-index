@@ -6,7 +6,7 @@
       "inputSource": {
         "type": "http",
         "uris": [
-            "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/Houston/20200615_Houston.csv"
+            "https://example.com"
         ]
       },
       "inputFormat": {
@@ -75,7 +75,16 @@
             "cprimarycontact",
             "cemail"
         ]
-      }
+      },
+      "transformSpec": {
+        "transforms": [
+          {
+          "type": "expression",
+          "name": "Market",
+          "expression": ""
+          }
+        ]
+      } 
     }
   }
 }
