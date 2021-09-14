@@ -73,7 +73,8 @@
             "curl",
             "cfax",
             "cprimarycontact",
-            "cemail"
+            "cemail",
+            "Market"
         ]
       },
       "transformSpec": {
