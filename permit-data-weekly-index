@@ -4,9 +4,19 @@
     "ioConfig": {
       "type": "index_parallel",
       "inputSource": {
-        "type": "http",
-        "uris": [
-            "https://example.com"
+        "type": "combining",
+        "delegates": [
+          {
+            "type": "druid",
+            "dataSource": "BASE_DATA_SOURCE",
+            "interval": "INTERVALS"
+          },
+          {
+            "type": "http",
+            "uris": [
+                "https://example.com"
+            ]
+          }
         ]
       },
       "inputFormat": {
