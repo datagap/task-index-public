@@ -76,7 +76,8 @@
         "type": "uniform",
         "queryGranularity": "NONE",
         "rollup": false,
-        "segmentGranularity": "WEEK"
+        "segmentGranularity": "WEEK",
+        "intervals": ["INTERVALS"]
       },
       "timestampSpec": {
         "column": "pdate",
