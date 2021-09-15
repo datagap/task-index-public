@@ -6,7 +6,7 @@
       "inputSource": {
         "type": "http",
         "uris": [
-          "https://example.com"
+          "https://raw.githubusercontent.com/PaulQPham/test-permit-data/main/schema.csv"
         ]
       },
       "inputFormat": {
@@ -82,7 +82,7 @@
           {
           "type": "expression",
           "name": "Market",
-          "expression": ""
+          "expression": "nvl(\"dummyCol1\", 'SchemaImport')"
           }
         ]
       } 
