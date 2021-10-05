@@ -4,9 +4,19 @@
       "ioConfig": {
         "type": "index_parallel",
         "inputSource" : {
-          "type" : "local",
-          "baseDir" : "BASE_DIR",
-          "filter" : "*.json.gz"
+          "type": "combining",
+          "delegates": [
+            {
+              "type": "druid",
+              "dataSource": "BASE_DATA_SOURCE",
+              "interval": "INTERVALS"
+            },
+            {
+              "type" : "local",
+              "baseDir" : "BASE_DIR",
+              "filter" : "*.json.gz"
+            }
+          ]
         },
         "inputFormat": {
           "type": "json"
@@ -16,10 +26,12 @@
       "tuningConfig": {
         "type": "index_parallel",
         "partitionsSpec": {
-          "type": "dynamic"
+          "type": "hashed",
+          "numShards": 1
         },
         "maxNumConcurrentSubTasks": 2,
-        "maxTotalRows": 100000
+        "maxTotalRows": 100000,
+        "forceGuaranteedRollup": true
       },
       "dataSchema": {
         "dataSource": "DATA_SOURCE",
@@ -27,6 +39,7 @@
           "type": "uniform",
           "segmentGranularity": "DAY",
           "queryGranularity": "MINUTE",
+          "intervals": ["INTERVALS"],
           "rollup": true
         },
         "timestampSpec": {
