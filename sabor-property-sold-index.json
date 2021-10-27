@@ -289,11 +289,6 @@
           ]
         },
         "transformSpec": {
-          "filter": {
-            "type": "selector",
-            "dimension": "Status",
-            "value": "Sold"
-          },
           "transforms": [
             {
               "type": "expression",
